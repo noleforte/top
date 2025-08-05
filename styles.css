@@ -33,11 +33,12 @@ body {
 
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .nav-brand h2 {
@@ -55,6 +56,9 @@ body {
     gap: 1.5rem;
     animation: fadeInUp 0.8s ease-out 0.5s both;
     flex-wrap: wrap;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-menu a {
@@ -1394,12 +1398,22 @@ body {
     .nav-menu {
         display: none;
         gap: 1rem;
+        position: static;
+        transform: none;
+        left: auto;
     }
     
     .nav-menu.active {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
     }
     
     .nav-toggle {
