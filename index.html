@@ -88,13 +88,16 @@
     </section>
 
     <!-- Gallery (4) -->
-    <section id="gallery" class="section">
+    <section id="gallery" class="section gallery-section">
+        <video class="gallery-background" autoplay muted loop playsinline>
+            <source src="images/gallery/background.mp4" type="video/mp4">
+        </video>
+        <div class="gallery-overlay"></div>
         <div class="container">
             <div class="section-header">
-                <h2>Project Gallery</h2>
-                <p>Explore our ecosystem</p>
+                <h2><img src="images/topg.png" alt="Project Gallery" class="gallery-title-image"></h2>
             </div>
-            <div class="tunnel-gallery">
+            <div class="gallery-grid">
                 <!-- Dynamic items will be generated here -->
             </div>
         </div>
@@ -103,23 +106,31 @@
     <!-- Swap Section (3) -->
     <section id="swap" class="section">
         <div class="container">
-                            <div class="section-header">
-                    <h2>Swap</h2>
-                    <p>Swap SOL to TOP with the best rates across all Solana DEXs</p>
-                </div>
+            <div class="section-header">
+                <h2><img src="images/swap.png" alt="Swap" class="swap-title-image"></h2>
+            </div>
+            
+            <!-- Swap decorative images -->
+            <div class="swap-decorative-images">
+                <img src="images/s1.png" alt="Swap decoration 1" class="swap-decorative swap-decorative-1">
+                <img src="images/s2.png" alt="Swap decoration 2" class="swap-decorative swap-decorative-2">
+                <img src="images/s3.png" alt="Swap decoration 3" class="swap-decorative swap-decorative-3">
+                <img src="images/s4.png" alt="Swap decoration 4" class="swap-decorative swap-decorative-4">
+            </div>
+            
+            <div class="swap-video-left">
+                <video autoplay muted loop playsinline>
+                    <source src="images/Lightning.mp4" type="video/mp4">
+                </video>
+            </div>
             <div class="swap-container">
-                <div class="swap-card">
-                    <iframe 
-                        src="https://jup.ag/swap?sell=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&buy=So11111111111111111111111111111111111111112" 
-                        width="100%" 
-                        height="600" 
-                        frameborder="0"
-                        style="border-radius: 12px; background: transparent;">
-                    </iframe>
-                    <div class="swap-info">
-                        <p><i class="fas fa-info-circle"></i> Powered by Jupiter - Best routes across all Solana DEXs</p>
-                    </div>
-                </div>
+                <iframe 
+                    src="https://jup.ag/swap?sell=EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v&buy=So11111111111111111111111111112" 
+                    width="100%" 
+                    height="600" 
+                    frameborder="0"
+                    style="border-radius: 12px; background: transparent;">
+                </iframe>
             </div>
         </div>
     </section>

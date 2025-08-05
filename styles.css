@@ -221,24 +221,60 @@ body {
 }
 
 /* Swap Section (3) */
+#swap {
+    position: relative;
+}
+
 .swap-container {
-    max-width: 500px;
+    max-width: 65%;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
-.swap-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-}
-
-.swap-card iframe {
+.swap-container iframe {
     border-radius: 12px;
     background: transparent;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    position: relative;
+    z-index: 30;
+}
+
+.swap-video-left{
+    position: absolute;
+    transform: translateY(-50%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+}
+.swap-video-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.swap-video-left {
+    left: 0rem;
+}
+
+.swap-video-right {
+    right: 2rem;
+}
+
+.swap-video-left video{
+    width: 100%;
+    height: 100%;
+}
+.swap-video-right video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .swap-input {
@@ -293,36 +329,173 @@ body {
     font-weight: 600;
 }
 
-.swap-info {
-    margin-top: 1rem;
-    padding: 1rem;
-    background: rgba(99, 102, 241, 0.1);
-    border-radius: 8px;
-    border: 1px solid rgba(99, 102, 241, 0.2);
-}
 
-.swap-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #a1a1aa;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
 
-.swap-info i {
-    color: #6366f1;
-}
-
-/* Gallery (4) - Random Tunnel Effect */
-.tunnel-gallery {
+/* Gallery (4) - Dynamic Image Movement */
+.gallery-grid {
+    position: relative;
+    width: 100vw;
+    height: 80vh;
     margin-top: 4rem;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.gallery-section {
     position: relative;
     overflow: hidden;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    padding: 0 2rem;
-    min-height: 80vh;
+}
+
+.gallery-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+.gallery-item {
+    position: absolute;
+    width: 390px;
+    height: 260px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 20;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+/* Gallery movement animations */
+@keyframes galleryMove1 {
+    0% {
+        transform: translateX(-400px) translateY(-200px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(400px) translateY(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes galleryMove2 {
+    0% {
+        transform: translateX(400px) translateY(-200px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-400px) translateY(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes galleryMove3 {
+    0% {
+        transform: translateX(-400px) translateY(200px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(400px) translateY(-200px);
+        opacity: 0;
+    }
+}
+
+@keyframes galleryMove4 {
+    0% {
+        transform: translateX(400px) translateY(200px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-400px) translateY(-200px);
+        opacity: 0;
+    }
+}
+
+@keyframes galleryMove5 {
+    0% {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}
+
+@keyframes galleryMove6 {
+    0% {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
 }
 
 .tunnel-row {
@@ -678,33 +851,16 @@ body {
     animation-delay: 1.5s;
 }
 
-/* Responsive tunnel */
+/* Responsive gallery */
 @media (max-width: 768px) {
-    .tunnel-gallery {
-        padding: 0 1rem;
-        min-height: 60vh;
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 0 0.5rem;
     }
     
-    .tunnel-item {
-        width: 250px;
-        height: 150px;
-    }
-    
-    .tunnel-item[data-direction="top-left"],
-    .tunnel-item[data-direction="top-right"],
-    .tunnel-item[data-direction="bottom-left"],
-    .tunnel-item[data-direction="bottom-right"] {
-        animation: tunnelFromTopLeft 6s linear infinite;
-    }
-    
-    .tunnel-item[data-direction="left"],
-    .tunnel-item[data-direction="right"] {
-        animation: tunnelFromLeft 6s linear infinite;
-    }
-    
-    .tunnel-item[data-direction="top"],
-    .tunnel-item[data-direction="bottom"] {
-        animation: tunnelFromTop 6s linear infinite;
+    .gallery-item img {
+        height: 200px;
     }
 }
 
@@ -962,6 +1118,8 @@ body {
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
+    position: relative;
+    z-index: 10;
 }
 
 .section-header h2 {
@@ -972,6 +1130,92 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.gallery-title-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+}
+
+.swap-title-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: contain;
+}
+
+/* Swap decorative images */
+.swap-decorative-images {
+    position: relative;
+    width: 100%;
+    height: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.swap-decorative {
+    position: absolute;
+    max-width: 300px;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.swap-decorative:hover {
+    opacity: 1;
+}
+
+.swap-decorative-1 {
+    top: 407px;
+    left: 106%;
+}
+
+.swap-decorative-2 {
+    top: -179px;
+    right: 98%;
+    transform: rotate(15deg) scaleX(-1);
+}
+
+.swap-decorative-3 {
+    bottom: -289px;
+    left: 81%;
+    transform: rotate(-1deg) scaleX(-1);
+}
+
+.swap-decorative-4 {
+    top: 448px;
+    right: 137%;
+    transform: rotate(-21deg);
+}
+
+/* Responsive adjustments for swap decorative images */
+@media (max-width: 768px) {
+    .swap-decorative {
+        max-width: 80px;
+    }
+    
+    .swap-decorative-1 {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .swap-decorative-2 {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .swap-decorative-3 {
+        bottom: -288px;
+    left: 81%;
+    transform: rotate(1deg) scaleX(-1);
+    }
+    
+    .swap-decorative-4 {
+        bottom: 10px;
+        right: 10px;
+    }
 }
 
 .section-header p {
@@ -1458,7 +1702,21 @@ body {
         text-align: center;
     }
     
-    .swap-card iframe {
+    .swap-container {
+        max-width: 95%;
+        padding: 0 0.5rem;
+    }
+    
+    .swap-video-left,
+    .swap-video-right {
+        position: static;
+        transform: none;
+        width: 100%;
+        height: 150px;
+        margin-bottom: 1rem;
+    }
+    
+    .swap-container iframe {
         height: 500px;
     }
     
@@ -1470,6 +1728,25 @@ body {
     .social-link {
         width: 60px;
         height: 60px;
+    }
+}
+
+@media (max-width: 1439px) {
+    .swap-container {
+        max-width: 80%;
+        padding: 0 1rem;
+    }
+    
+    .swap-video-left{
+
+    }
+    .swap-video-right {
+        width: 150px;
+        height: 300px;
+    }
+    
+    .swap-container iframe {
+        height: 550px;
     }
 }
 

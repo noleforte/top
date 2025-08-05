@@ -102,31 +102,71 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Dynamic tunnel generation
-    const tunnelGallery = document.querySelector('.tunnel-gallery');
-    const directions = ['top-left', 'top-right', 'bottom-left', 'bottom-right', 'left', 'right', 'top', 'bottom'];
-    const animations = ['tunnelFromLeft', 'tunnelFromRight', 'tunnelFromTop', 'tunnelFromBottom', 'tunnelFromTopLeft', 'tunnelFromTopRight', 'tunnelFromBottomLeft', 'tunnelFromBottomRight', 'tunnelRotate', 'tunnelScale', 'tunnelBounce'];
-    const icons = ['fas fa-wallet', 'fas fa-exchange-alt', 'fas fa-chart-line', 'fas fa-rocket', 'fas fa-shield-alt', 'fas fa-users', 'fas fa-cog', 'fas fa-star', 'fas fa-gem', 'fas fa-bolt', 'fas fa-heart', 'fas fa-crown'];
-    const titles = ['Smart Wallet', 'DEX Platform', 'Analytics', 'Launchpad', 'Security', 'Community', 'Settings', 'Premium', 'Diamond', 'Lightning', 'Heart', 'Crown'];
-    const descriptions = [
-        'Secure and intuitive wallet experience',
-        'Decentralized exchange with advanced features',
-        'Real-time market data and insights',
-        'Launch your projects with confidence',
-        'Advanced protection and audit systems',
-        'Global community of developers and users',
-        'Advanced configuration options',
-        'Exclusive features and benefits',
-        'Premium diamond features',
-        'Lightning fast transactions',
-        'Heart of the ecosystem',
-        'Crown of innovation'
+    // Dynamic gallery generation
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const galleryImages = [
+        'images/gallery/img2.png',
+        'images/gallery/img3.png',
+        'images/gallery/img5.jpg',
+        'images/gallery/img8.jpg',
+        'images/gallery/img9.jpg',
+        'images/gallery/img10.jpg',
+        'images/gallery/img11.jpg',
+        'images/gallery/img13.jpg',
+        'images/gallery/img14.jpg',
+        'images/gallery/img16.jpg',
+        'images/gallery/img17.jpg',
+        'images/gallery/img18.jpg'
     ];
+    const galleryAnimations = ['galleryMove1', 'galleryMove2', 'galleryMove3', 'galleryMove4', 'galleryMove5', 'galleryMove6'];
+    const activeGalleryItems = [];
 
-    // Track active items to prevent collisions
-    const activeItems = [];
-    const itemSize = { width: 300, height: 200 };
-    const minDistance = 350; // Minimum distance between items
+    function createGalleryItem() {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        
+        // Random position
+        const top = Math.random() * 80; // 0-80%
+        const left = Math.random() * 80; // 0-80%
+        
+        // Random image
+        const randomImage = galleryImages[Math.floor(Math.random() * galleryImages.length)];
+        
+        // Random animation
+        const randomAnimation = galleryAnimations[Math.floor(Math.random() * galleryAnimations.length)];
+        const randomDuration = 5 + Math.random() * 3; // 5-8 seconds
+        
+        item.style.top = top + '%';
+        item.style.left = left + '%';
+        item.style.animation = `${randomAnimation} ${randomDuration}s linear infinite`;
+        
+        item.innerHTML = `<img src="${randomImage}" alt="Gallery Image">`;
+        
+        // Add to active items
+        activeGalleryItems.push({ element: item, startTime: Date.now() });
+        
+        galleryGrid.appendChild(item);
+        
+        // Remove item after animation completes
+        setTimeout(() => {
+            if (item.parentNode) {
+                item.parentNode.removeChild(item);
+                // Remove from active items
+                const index = activeGalleryItems.findIndex(activeItem => activeItem.element === item);
+                if (index > -1) {
+                    activeGalleryItems.splice(index, 1);
+                }
+            }
+        }, randomDuration * 1000);
+    }
+    
+    // Generate new items continuously
+    setInterval(createGalleryItem, 400); // Create new item every 0.4 seconds
+    
+    // Initial items
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => createGalleryItem(), i * 150);
+    }
 
     function checkCollision(newPos, existingItems) {
         for (let item of existingItems) {
