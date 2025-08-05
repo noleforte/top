@@ -33,7 +33,7 @@ body {
 
 .nav {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     max-width: 1200px;
@@ -48,6 +48,11 @@ body {
     background-clip: text;
     font-weight: 700;
     animation: fadeInUp 0.8s ease-out 0.2s both;
+    margin: 0;
+}
+
+.nav-brand {
+    flex-shrink: 0;
 }
 
 .nav-menu {
@@ -56,9 +61,7 @@ body {
     gap: 1.5rem;
     animation: fadeInUp 0.8s ease-out 0.5s both;
     flex-wrap: wrap;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
 }
 
 .nav-menu a {
@@ -1395,12 +1398,14 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .nav {
+        justify-content: space-between;
+    }
+    
     .nav-menu {
         display: none;
         gap: 1rem;
-        position: static;
-        transform: none;
-        left: auto;
+        margin: 0;
     }
     
     .nav-menu.active {
