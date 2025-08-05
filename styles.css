@@ -5,12 +5,31 @@
     box-sizing: border-box;
 }
 
+img, video, iframe {
+    cursor: none;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #000000;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
+    cursor: none;
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url('images/arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
 }
 
 .container {
@@ -70,6 +89,7 @@ body {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    cursor: none;
 }
 
 .nav-menu a:hover {
@@ -115,9 +135,12 @@ body {
 }
 
 .scroll-content {
-    text-align: center;
-    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
     margin: 0 auto;
+    gap: 2rem;
 }
 
 .scroll-content h1 {
@@ -155,6 +178,91 @@ body {
     font-weight: 500;
 }
 
+/* Scroll banner new layout */
+.scroll-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.loading-video {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Parallax overlay */
+.parallax-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parallax-content {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-20px);
+}
+
+.parallax-image,
+.parallax-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity 0.5s ease-in-out;
+    cursor: none;
+}
+
+.parallax-scroll {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.parallax-loading {
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.parallax-arrow {
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -169,7 +277,7 @@ body {
 
 /* Strange Image (2) */
 .strange-image {
-    min-height: 100vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
@@ -177,9 +285,27 @@ body {
     overflow: hidden;
 }
 
+.video-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    z-index: 1;
+}
+
+.strange-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .image-content {
     width: 100%;
-    height: 100vh;
+    height: 40vh;
     position: relative;
 }
 
@@ -187,6 +313,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
+    z-index: 2;
 }
 
 .element {
@@ -238,6 +365,7 @@ body {
     width: 100%;
     position: relative;
     z-index: 30;
+    cursor: none;
 }
 
 .swap-video-left{
@@ -393,6 +521,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: all 0.3s ease;
+    cursor: none;
 }
 
 /* Gallery movement animations */
@@ -947,6 +1076,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: none;
 }
 
 .social-link:hover {
@@ -1055,7 +1185,7 @@ body {
     border-radius: 8px;
     font-weight: 600;
     font-size: 1rem;
-    cursor: pointer;
+    cursor: none;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
@@ -1550,6 +1680,7 @@ body {
     color: #a1a1aa;
     text-decoration: none;
     transition: color 0.3s ease;
+    cursor: none;
 }
 
 .footer-section ul li a:hover {
@@ -1572,6 +1703,7 @@ body {
     color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
+    cursor: none;
 }
 
 .social-links a:hover {
@@ -1641,6 +1773,22 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .scroll-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .scroll-left,
+    .scroll-right {
+        flex: none;
+        width: 100%;
+    }
+    
+    .scroll-image,
+    .loading-video {
+        max-height: 200px;
+    }
+    
     .nav {
         justify-content: space-between;
     }

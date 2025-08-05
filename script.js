@@ -358,6 +358,53 @@ document.addEventListener('DOMContentLoaded', function() {
     statNumbers.forEach(stat => {
         statsObserver.observe(stat);
     });
+    
+    // Custom cursor tracking
+document.addEventListener('mousemove', function(e) {
+    const cursor = document.querySelector('.custom-cursor');
+    if (cursor) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    }
+});
+
+// Synchronize strange-image videos
+function synchronizeVideos() {
+    const videos = document.querySelectorAll('.strange-video');
+    if (videos.length > 0) {
+        // Get the first video as reference
+        const referenceVideo = videos[0];
+        
+        // Sync all videos to the reference video
+        videos.forEach((video, index) => {
+            if (index > 0) {
+                // Set the same current time as reference video
+                video.currentTime = referenceVideo.currentTime;
+                
+                // Sync play/pause state
+                if (referenceVideo.paused) {
+                    video.pause();
+                } else {
+                    video.play();
+                }
+            }
+        });
+    }
+}
+
+// Apply synchronization when videos are loaded
+document.addEventListener('DOMContentLoaded', function() {
+    const videos = document.querySelectorAll('.strange-video');
+    videos.forEach(video => {
+        video.addEventListener('loadedmetadata', synchronizeVideos);
+        video.addEventListener('play', synchronizeVideos);
+        video.addEventListener('pause', synchronizeVideos);
+        video.addEventListener('seeked', synchronizeVideos);
+    });
+    
+    // Initial sync after a short delay
+    setTimeout(synchronizeVideos, 100);
+});
 });
 
 // Add CSS for mobile menu
@@ -404,4 +451,114 @@ style.textContent = `
         transition: opacity 0.5s ease;
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
+
+// Parallax overlay effect
+const parallaxOverlay = document.getElementById('parallax-overlay');
+const sections = document.querySelectorAll('section');
+
+window.addEventListener('scroll', function() {
+    const scrollTop = window.pageYOffset;
+    const windowHeight = window.innerHeight;
+    
+    // Find current section and next section
+    let currentSection = null;
+    let nextSection = null;
+    let currentSectionIndex = -1;
+    
+    sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        // Check if we're in this section
+        if (scrollTop >= sectionTop - windowHeight * 0.5 && scrollTop < sectionBottom - windowHeight * 0.5) {
+            currentSection = section;
+            currentSectionIndex = index;
+            nextSection = sections[index + 1] || null;
+            console.log('Found section:', index, 'Section ID:', section.id);
+        }
+    });
+    
+    if (currentSection && currentSectionIndex === 5) { // Show only on strange-image section (index 5)
+        const scrollImage = parallaxOverlay.querySelector('.parallax-scroll');
+        const loadingVideo = parallaxOverlay.querySelector('.parallax-loading');
+        
+        // Calculate section progress (0 to 1)
+        const sectionTop = currentSection.offsetTop;
+        const sectionHeight = currentSection.offsetHeight;
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        // Calculate how much we've scrolled through this section
+        const sectionScrollTop = scrollTop - (sectionTop - windowHeight * 0.5);
+        const sectionScrollHeight = sectionHeight + windowHeight;
+        const sectionProgress = Math.min(sectionScrollTop / sectionScrollHeight, 1);
+        
+        // Show arrow image on strange-image section
+        let elementType = 2; // strange-image -> arrow
+        
+        // Debug: log current section and element type
+        console.log('Current section index:', currentSectionIndex, 'Element type:', elementType);
+        
+        // Hide all elements first
+        scrollImage.style.opacity = 0;
+        scrollImage.style.transform = 'translateY(30px)';
+        loadingVideo.style.opacity = 0;
+        loadingVideo.style.transform = 'translateY(30px)';
+        
+        const arrowImage = parallaxOverlay.querySelector('.parallax-arrow');
+        arrowImage.style.opacity = 0;
+        arrowImage.style.transform = 'translateY(30px)';
+        
+        // Show appropriate element based on section
+        if (elementType === 0) {
+            // Show scroll image for sections 1, 4, 7...
+            scrollImage.style.opacity = 1;
+            scrollImage.style.transform = 'translateY(0)';
+            console.log('Showing scroll image');
+        } else if (elementType === 1) {
+            // Show loading video for sections 2, 5, 8...
+            loadingVideo.style.opacity = 1;
+            loadingVideo.style.transform = 'translateY(0)';
+            console.log('Showing loading video');
+        } else if (elementType === 2) {
+            // Show arrow image for sections 3, 6, 9...
+            arrowImage.style.opacity = 1;
+            arrowImage.style.transform = 'translateY(0)';
+            console.log('Showing arrow image');
+        }
+        
+        // Add entrance animation when entering new section
+        if (sectionProgress < 0.1) {
+            // Just entered section - animate from bottom
+            if (elementType === 0) {
+                scrollImage.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    scrollImage.style.transform = 'translateY(0)';
+                }, 50);
+            } else if (elementType === 1) {
+                loadingVideo.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    loadingVideo.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                arrowImage.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    arrowImage.style.transform = 'translateY(0)';
+                }, 50);
+            }
+        }
+    } else {
+        // Hide all elements on all other sections
+        const scrollImage = parallaxOverlay.querySelector('.parallax-scroll');
+        const loadingVideo = parallaxOverlay.querySelector('.parallax-loading');
+        const arrowImage = parallaxOverlay.querySelector('.parallax-arrow');
+        
+        scrollImage.style.opacity = 0;
+        scrollImage.style.transform = 'translateY(30px)';
+        loadingVideo.style.opacity = 0;
+        loadingVideo.style.transform = 'translateY(30px)';
+        arrowImage.style.opacity = 0;
+        arrowImage.style.transform = 'translateY(30px)';
+    }
+}); 
