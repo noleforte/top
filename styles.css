@@ -781,33 +781,29 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1.25rem;
     position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .social-link:hover {
-    background: #6366f1;
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Custom colors for Dexscreener and Dextools */
-.social-link:nth-child(3) i {
-    color: #00d4aa;
+.social-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
 }
 
-.social-link:nth-child(4) i {
-    color: #ff6b35;
-}
-
-.social-link:nth-child(3):hover {
-    background: linear-gradient(135deg, #00d4aa, #00b894);
-}
-
-.social-link:nth-child(4):hover {
-    background: linear-gradient(135deg, #ff6b35, #ff5252);
+.social-link:hover .social-icon {
+    filter: brightness(1) invert(0);
+    transform: scale(1.1);
 }
 
 /* Banner Block (7) */
@@ -1448,6 +1444,16 @@ body {
     
     .swap-card iframe {
         height: 500px;
+    }
+    
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .social-link {
+        width: 45px;
+        height: 45px;
     }
 }
 
