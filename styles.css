@@ -785,11 +785,29 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 1.25rem;
+    position: relative;
 }
 
 .social-link:hover {
     background: #6366f1;
     transform: translateY(-5px);
+}
+
+/* Custom colors for Dexscreener and Dextools */
+.social-link:nth-child(3) i {
+    color: #00d4aa;
+}
+
+.social-link:nth-child(4) i {
+    color: #ff6b35;
+}
+
+.social-link:nth-child(3):hover {
+    background: linear-gradient(135deg, #00d4aa, #00b894);
+}
+
+.social-link:nth-child(4):hover {
+    background: linear-gradient(135deg, #ff6b35, #ff5252);
 }
 
 /* Banner Block (7) */
