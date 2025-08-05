@@ -117,8 +117,8 @@
     <section id="swap" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Swap Tokens</h2>
-                <p>Fast and secure token exchange</p>
+                <h2>Jupiter Aggregator</h2>
+                <p>Best DEX aggregator for Solana - find the best swap routes</p>
             </div>
             <div class="swap-container">
                 <div class="swap-card">
@@ -127,26 +127,35 @@
                         <div class="input-group">
                             <input type="number" placeholder="0.0" value="1.0">
                             <select>
+                                <option>SOL</option>
+                                <option>USDC</option>
                                 <option>ETH</option>
-                                <option>BNB</option>
-                                <option>USDT</option>
+                                <option>BONK</option>
                             </select>
                         </div>
                     </div>
                     <div class="swap-arrow">
-                        <i class="fas fa-arrow-down"></i>
+                        <i class="fas fa-exchange-alt"></i>
                     </div>
                     <div class="swap-input">
                         <label>You Receive</label>
                         <div class="input-group">
-                            <input type="number" placeholder="0.0" value="1000">
+                            <input type="number" placeholder="0.0" value="0.0">
                             <select>
-                                <option>CPT</option>
-                                <option>TOKEN</option>
+                                <option>USDC</option>
+                                <option>SOL</option>
+                                <option>ETH</option>
+                                <option>BONK</option>
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn-primary swap-btn">Connect Wallet</button>
+                    <button class="btn btn-primary swap-btn" onclick="window.open('https://jup.ag', '_blank')">
+                        <i class="fas fa-rocket"></i>
+                        Swap on Jupiter
+                    </button>
+                    <div class="swap-info">
+                        <p><i class="fas fa-info-circle"></i> Powered by Jupiter - Best routes across all Solana DEXs</p>
+                    </div>
                 </div>
             </div>
         </div>

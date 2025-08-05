@@ -280,6 +280,27 @@ body {
     font-weight: 600;
 }
 
+.swap-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.swap-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #a1a1aa;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.swap-info i {
+    color: #6366f1;
+}
+
 /* Gallery (4) - Random Tunnel Effect */
 .tunnel-gallery {
     margin-top: 4rem;
