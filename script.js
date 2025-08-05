@@ -256,9 +256,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add loading animation
+    // Add loading animation and scroll to bottom
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
+        
+        // Scroll to bottom on page load
+        setTimeout(() => {
+            window.scrollTo(0, document.body.scrollHeight);
+        }, 100);
     });
 
     // Parallax effect for hero section
