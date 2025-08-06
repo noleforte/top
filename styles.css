@@ -2001,6 +2001,10 @@ body {
         width: 240px;
         height: 240px;
     }
+    .about-social-link img{
+        width: 45px !important;
+        height: 45px !important;
+    }
     #banner-bg-video-mobile{
         display: none;
     }
@@ -2077,6 +2081,10 @@ body {
         max-width: 80%;
         padding: 0 1rem;
     }
+    .about-social-links{
+        gap: 1rem;
+        top: 67%;
+    }
     #banner-bg-video-desc{
         display: none;
     }
@@ -2091,7 +2099,7 @@ body {
     }
     .about-text-bottom{
         margin-bottom: 10%;
-        margin-top: 16% !important;
+        margin-top: 29% !important;
     }
     .about-text{
         margin-top: -19%;
@@ -2286,7 +2294,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -100%;
+    bottom: 12%;
     margin: 0;
     z-index: 10;
 }
