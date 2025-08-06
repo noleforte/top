@@ -1878,7 +1878,7 @@ body {
         height: 60px;
     }
 }
-@media (max-width: 1679px) {
+@media (max-width: 1679px) and (min-width: 1440px) {
     .gallery-item {
         width: 240px;
         height: 240px;
