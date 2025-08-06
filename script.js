@@ -407,6 +407,46 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 });
 
+// Copy CA to clipboard functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const whoisText = document.querySelector('.whois-text');
+    const copyNotification = document.getElementById('copyNotification');
+    
+    if (whoisText && copyNotification) {
+        whoisText.addEventListener('click', async function() {
+            const textToCopy = this.textContent;
+            
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                
+                // Show notification above the text
+                copyNotification.classList.add('show');
+                
+                // Hide notification after 2 seconds
+                setTimeout(() => {
+                    copyNotification.classList.remove('show');
+                }, 2000);
+                
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Show notification above the text
+                copyNotification.classList.add('show');
+                
+                setTimeout(() => {
+                    copyNotification.classList.remove('show');
+                }, 2000);
+            }
+        });
+    }
+});
+
 // Add CSS for mobile menu
 const style = document.createElement('style');
 style.textContent = `
