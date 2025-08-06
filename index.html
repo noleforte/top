@@ -14,8 +14,11 @@
 
     <!-- Banner Block (7) -->
     <section id="banner-block" class="banner-block">
-        <video class="banner-bg-video" autoplay muted loop playsinline>
+        <video class="banner-bg-video" id="banner-bg-video-desc" autoplay muted loop playsinline>
             <source src="images/Lightning_Top.mp4" type="video/mp4">
+        </video>
+        <video class="banner-bg-video" id="banner-bg-video-mobile" autoplay muted loop playsinline>
+            <source src="images/Lightning_Top_mobile.mp4" type="video/mp4">
         </video>
         <div class="container">
             <div class="banner-content">
@@ -32,19 +35,35 @@
                 <h2><img src="images/WIT.png" alt="About" class="gallery-title-image"></h2>
             </div>
             <div class="about-text" style="z-index: 5 !important;">
-                <h3>Our Vision</h3>
-                <p>We are building the next generation of decentralized applications that will transform how people interact with digital assets and financial services.</p>
-                
-                <h3>Key Features</h3>
-                <ul>
-            </div>
-            <div class="about-content" style="z-index: 5 !important;">
-                <div class="about-social-links">
-                    <a href="#" class="about-social-link"><img src="images/tg.png" alt="Telegram"></a>
-                    <a href="#" class="about-social-link"><img src="images/x.png" alt="X"></a>
-                    <a href="#" class="about-social-link"><img src="images/jp.png" alt="Jupiter"></a>
-                    <a href="#" class="about-social-link"><img src="images/ds.png" alt="Dexscreener"></a>
-                    <a href="#" class="about-social-link"><img src="images/dt.png" alt="Dextools"></a>
+                <div class="about-text-columns">
+                    <div class="about-text-left">
+                        <p id="first_text">TOP is Top because it's TOP. <br>
+                            A club, a community, a squad - or just a group of people</p>
+                    </div>
+                    <div class="about-text-right">
+                        <p id="second_text">The first rule of TOP: You are Top <br>
+                            The second rule of TOP: You must know the first rule</p>
+                    </div>
+                </div>
+                <div class="about-text-bottom">
+                    <div id="third_text" class="text-stretch-container">And there won't be a third rule - after all, you already know what matters most...</div>
+                    <script>
+                        const el = document.getElementById('third_text');
+                        const text = el.innerText;
+                        
+                        // Разбиваем текст на символы, включая пробелы
+                        const characters = text.split('');
+                        
+                        // Очищаем контейнер и создаем span для каждого символа
+                        el.innerHTML = '';
+                        characters.forEach(char => {
+                            const span = document.createElement('span');
+                            span.textContent = char;
+                            span.className = 'text-char';
+                            el.appendChild(span);
+                        });
+                    </script>
+                    <div id="third_text_mobile" class="text-stretch-container">And there won't be a third rule - after all, you already know what matters most... </div>
                 </div>
             </div>
             <div class=
